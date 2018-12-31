@@ -3,6 +3,7 @@
 This project builds a Fortigate log monitoring solution based on ELK stack (Elasticsearch, Logstash, Kibana) and Fortigate firewalls logs. Courtesy of [Zen Networks](https://www.zen-networks.ma/)
 
 # 0. Prerequisites and Scope:
+Before using this project, make sure you have:
 - One or multiple Fortigate firewalls configured with the required filtering and identification features.
 - Installed Elasticsearch, Logstash and Kibana instances.
 
