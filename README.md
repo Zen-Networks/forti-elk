@@ -1,12 +1,15 @@
 ![zen](index.png)
 
-This project is about fortigate log monitoring with ELK stack (Elasticsearch, Logstash, Kibana). [Zen Networks](https://www.zen-networks.ma/)
+This project builds a Fortigate log monitoring solution based on ELK stack (Elasticsearch, Logstash, Kibana) and Fortigate firewalls logs. Courtesy of [Zen Networks](https://www.zen-networks.ma/)
 
-I suppose that you are already configure Fortigate with your proper needs (filtering and users ...), and you install Elasticsearch, Logstash, Kibana, as well. In this project, you have to add some extra configuration like: 
-- Fortigate configuration in order to send logs to specified port (in our case is 5517, you can do whatever you want).
-- Logstash configuration.
-Then all you have to do is importing the visualizations and the dashboard to your Kibana.
+# 0. Prerequisites and Scope:
+- One or multiple Fortigate firewalls configured with the required filtering and identification features.
+- Installed Elasticsearch, Logstash and Kibana instances.
 
+In this project, we will cover: 
+- Fortigate configuration in order to send logs to a specified host/port. We've choosen port 5517. But, it can be any valid port.
+- Logstash configuration to parse Fortigate logs
+- Kibana visualizations and dashboard to leverage these logs
 
 # 1. Fortigate Configurations:
 ```
@@ -53,16 +56,16 @@ Copy the file _fortigate.conf_ that exist in the folder Logstash to this path:
 ```
 /etc/logstash/conf.d/
 ```
-Elasticsearsh is listening to localhost:9200 in my case so if you separate the servers then you have to change localhost to Elasticsearsh address whit the relative port.
+Elasticsearch is listening to localhost:9200 in our case. If you have separated the ELK stack in a larger setup, then you have to change localhost to the Elasticsearch server address.
 
-then start the logstash with this command:
+Start the logstash with this command:
 ```
 /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/fortigate.conf
 ```
 
 # 3. Kibana Configurations:
 
-- Go to Management then Saved Objects click on import in order to import Index, dashboard and visualizations that exit in Kibana folder.
+- Go to Management. Then, Saved Objects. Click on import in order to import Index, dashboard and visualizations that exit in Kibana folder.
 
-- Make sur that the time is the same on both Fortigate and Kibana server.
+- Make sure that the time is the same on both Fortigate and Kibana server.
 
